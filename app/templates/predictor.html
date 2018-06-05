@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Webpage</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/nice-select.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117673581-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-117673581-2');
+  </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse text-center" style="background-color: #6441a4;">
+      <table border='0' align="center"><tr>
+        <td width="500">
+        </td>
+        <td>
+      <a class="navbar-center" href="https://www.twitch.tv"><img src="static/images/logo.png" width="150px" height="75px" style="margin-top: 50px"></a>
+        </td>
+
+      </tr>
+    </table>
+
+        <div class="container-fluid">
+            <div class="navbar-header">
+                {#
+                <a class="navbar-brand" href="https://www.twitch.tv"><img src="static/images/logo.png" width="50px" height="50px"></a>#}
+            </div>
+
+            <ul class="nav navbar-nav">
+
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">absolute</a></li>
+
+                <!-- <li><a href="#">Page 2</a></li> -->
+            </ul>
+
+        </div>
+    </nav>
+    <!-- Side navigation -->
+    <div class="sidenav">
+<br>
+      <table border='0' align="center"><tr>
+        <td>
+
+                  <a class="navbar-center" align="center" ><img src="static/images/Glitch_Purple_RGB.png" width="150px" height="150px"></a>
+
+
+       </td>
+</tr>
+<tr>
+      <td>
+        <form  class="form-inline" action="/">
+          <div class="form-group">
+                <label for ="video_num" style="margin: 25px", fontSize:"25">
+                  <font size="3" color="white" textAlign="center">Select a Video to Watch:</font></label>
+                <br>
+                <select name="video_num" id ="video_num">
+                    <option value="{{video_num}}">{{video_num}}</option>
+                    <option value="263708483">263708483_Ninja</option>
+                    <option value="265192303">v265192303_Ninja</option>
+                    <option value="264445933">264445933_Ninja</option>
+                    <option value="259803790">259803790_Ninja</option>
+                    <option value="268134145">268134145_Rocket_League</option>
+                    <option value="267311041">267311041_League_Of_Legend</option>
+                    <option value="256527777">256527777_Ninja</option>
+                    <option value="251938929">251938929_Ninja</option>
+                    <option value="251155912">251155912_Ninja</option>
+                </select>
+             <input type="submit" value="Submit" method="get" class="btn btn-primary" style="margin: 5px">
+          </div>
+
+
+    </td>
+
+</tr>
+
+<tr>
+<td align="center">
+  <br>
+  <font size="3" color="white" textAlign="center" align="center" >Current Video WordCloud</font></label>
+</td>
+</tr>
+
+</table>
+            <div class="form-group">
+
+            </div>
+
+        </form>
+
+                                    <div class="row" id="word_cloud_plot">
+                                        <div class="col-sm-6" style="width:310px;height: 500px" id="word_cloud_chart"></div>
+                                        <div class="col-sm-3"></div>
+                                    </div>
+
+    </div>
+    <div class="main">
+        <div class="row">
+            <div class="col-sm-3">
+                <!-- <form action="/predict">
+                <div class="row" style="margin-left: 0">
+                    <div class="col-sm-12">
+                        <label>Video Number:</label>
+                        <input type="text" name="video_num" value="{{video_num}}" class="form-control" />
+                        <input type="submit" value="Submit" method="get" class="btn btn-primary" style="margin-top: 10;">
+                    </div>
+                </div>
+              </form> -->
+
+                <!-- this div -->
+                <br/>
+                <!-- <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-6">
+
+                    </div>
+                        <div class="col-sm-6">
+
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+            <table border="0" align="left">
+                <!-- <table> -->
+
+                <tr>
+
+                    <td>
+                        <center>
+                          <label for ="video_link" style="margin: 5px">Streaming from Twtich:  <a id="video_link"  name="video_link" style="font-size:10px;"href=https://www.twitch.tv/videos/{{video_num}}>https://www.twitch.tv/videos/{{video_num}}</a></label>
+
+                        </center>
+                    </td>
+
+                    <tr>
+                        <td colspan="1">
+
+                            <center>
+                                <script src="http://player.twitch.tv/js/embed/v1.js"></script>
+                                <div id="playerdivID"></div>
+
+                            </center>
+                            <script type="text/javascript">
+                                var options = {
+                                    width: 800,
+                                    height: 400,
+                                    video: "<{{video_num}}>",
+                                };
+                                var player = new Twitch.Player("playerdivID", options);
+
+                                player.setVolume(.1);
+
+                                function seek22(var22) {
+                                    player.seek(var22);
+                                }
+                                // VERY IMPORTANTT!!!!! Id is for function class is for css in this case.
+                                function updateSlider(slideAmount) {
+                                    // var sliderDiv = document.getElementById("sliderAmount");
+                                    // sliderDiv.innerHTML = slideAmount;
+                                    player.seek(slideAmount)
+                                        // player.pause();
+                                        // # use d3 to select rect by id
+                                        // # use d3 to change the x attribute of rect after selecting it
+                                }
+                            </script>
+
+                            <center>
+                                <!-- <button onclick="seek22(60)">Reset_Video</button> -->
+                                <input class="slider" type="range" min={{ min_time }} max={{ max_time2 }} step="1" value="5" id="xvalue" onchange="updateSlider(this.value)"  >
+                                <!-- -->
+                                <div id="sliderAmount"></div>​
+                            </center>
+
+                        </td>
+
+
+
+</tr>
+
+<tr>
+<td valign="middle" align="center">
+
+        </div>
+
+        <div class="row">
+            <svg width="800" height="250">
+                <rect x="20" y="15" width="10" height="209" fill="purple" id='slide_rect' />
+            </svg>
+
+            <!-- <input type = "range" min = "50" max = "{{ max_time2/30 }}"  value = "5" id = "xvalue" > <br> -->
+
+            <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+            <script>
+                // A program that moves around a rectangle using sliders
+
+                //starting values of rectangle
+                var x = .1
+                var y = .1
+                var width = .1
+                var height = .1
+
+                var temp;
+
+                var svg_width = 600
+                var svg_height = 100
+                var padding = 50
+
+                var svg = d3.select("body").append("svg")
+                    .attr("width", svg_width)
+                    .attr("height", svg_height);
+
+                svg.append("rect")
+                    .attr("width", width)
+                    .attr("height", height)
+                    .attr("x", x)
+                    .attr("y", y)
+                    .style("fill", "none")
+                    .style("stroke", "black");
+
+                // //change the x-value
+                // d3.select("#xvalue").on("input", function() {
+                //
+                //   update(+this.value/31.5, "x");
+                // });
+
+                //change the x-value
+                d3.select("#xvalue").on("input", function() {
+                    if (this.value> 20) {
+                        // update(+this.value/31.5, "x");
+                        update(+this.value / 30.2, "x");
+
+                    } else {
+                        update(20, "x");
+                    }
+
+                });
+
+                function update(value, which_type) {
+
+                    //make sure we don't go off the screen
+                    if (which_type == "x") {
+                        temp = svg_width - padding - +d3.select("rect").attr("x")
+                        updateMax(temp, "#recwidth")
+                        if ((+d3.select("rect").attr(which_type) + padding + +d3.select("rect").attr("width")) > svg_width) {
+
+                            //max value
+                            value = temp;
+                        }
+                    }
+                    if (which_type == "y") {
+                        temp = svg_height - padding - +d3.select("rect").attr("y")
+                        updateMax(temp, "#recheight")
+                        if ((+d3.select("rect").attr(which_type) + padding + +d3.select("rect").attr("height")) > svg_height) {
+                            value = temp;
+                        }
+                    }
+                    if (which_type == "width") {
+                        temp = svg_width - padding - +d3.select("rect").attr("width")
+                        updateMax(temp, "#xvalue")
+                        if ((+d3.select("rect").attr(which_type) + padding + +d3.select("rect").attr("x")) > svg_width) {
+                            value = temp;
+                        }
+                    }
+                    if (which_type == "height") {
+                        temp = svg_height - padding - +d3.select("rect").attr("height")
+                        updateMax(temp, "#yvalue")
+                        if ((+d3.select("rect").attr(which_type) + padding + +d3.select("rect").attr("y")) > svg_height) {
+                            value = temp;
+                        }
+                    }
+
+                    d3.select("rect")
+                        .attr(which_type, value);
+
+                }
+
+                function updateMax(max, id) {
+                    d3.select("body").select(id).attr("max", max)
+                }
+</script>
+</td>
+
+</tr>
+
+<tr>
+<td>
+
+                    <div class="row">
+
+                        <div class="row" id="scattor_plot">
+                            <div></div>
+                            <div class="col-sm-6" id="plot"></div>
+                            <div class="col-sm-3"></div>
+                        </div>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+
+            </tr>
+            </table>
+
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script src="http://d3js.org/d3.v4.min.js"></script>
+            <script>
+                var data = {{data | safe}};
+                abc = data
+                var svg = d3.select("svg"),
+                    margin = {
+                        top: 20,
+                        right: 10,
+                        bottom: 30,
+                        left: 25
+                    },
+                    width = +svg.attr("width") - margin.left - margin.right,
+                    height = +svg.attr("height") - margin.top - margin.bottom,
+                    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                var x = d3.scaleLinear()
+                    .rangeRound([0, width]);
+
+                var y = d3.scaleLinear()
+                    .rangeRound([height, 0]);
+
+                var line = d3.line()
+                    .x(function(d, i) {
+                        return x(intervals[i]);
+                    })
+                    .y(function(d, i) {
+                        return y(numbers[i]);
+                    });
+
+                var numbers = Object.keys(data.number).map(function(key, index) {
+                    return data.number[key]
+                });
+                var intervals = Object.keys(data.interval).map(function(key, index) {
+                    return data.interval[key]
+                });
+
+                x.domain(d3.extent(intervals));
+                y.domain(d3.extent(numbers));
+
+                g.append("g")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(d3.axisBottom(x))
+                    .select(".domain")
+                    .remove();
+
+                g.append("g")
+                    .call(d3.axisLeft(y))
+                    .append("text")
+                    .attr("fill", "#000")
+                    .attr("transform", "rotate(-90)")
+                    .attr("y", 6)
+                    .attr("dy", "0.71em")
+                    .attr("text-anchor", "end")
+
+                    g.append("text")
+                        .attr("class", "y label")
+                        .attr("text-anchor", "end")
+                        .style("font-size", "12px")
+                        .attr("y", 10)
+                        .attr("x",0)
+                        .attr("dy", ".75em")
+                        .attr("transform", "rotate(-90)")
+                        .text("Freq of Comments");
+
+
+                        g.append("text")
+                            .attr("class", "y label")
+                            .attr("text-anchor", "end")
+                            .style("font-size", "12px")
+                            .attr("y", 220)
+                            .attr("x",450)
+                            .attr("dy", ".75em")
+                            .text("Bins of 30s Inverval");
+
+                g.append("path")
+                    .datum(numbers)
+                    .attr("fill", "none")
+                    .attr("stroke", "purple")
+                    .attr("stroke-linejoin", "round")
+                    .attr("stroke-linecap", "round")
+                    .attr("stroke-width", 1.5)
+                    .attr("d", line);
+
+                g.append("line")
+                    .attr("x1", 1000)
+                    .attr("y1", 1000)
+                    .attr("x2", 1000)
+                    .attr("y2", 220)
+                    .style("stroke", "black")
+
+                // g.append("rect")
+                // .attr("x1",1000)
+                // .attr("y1",1000)
+                // .attr("x2",1000)
+                // .attr("y2",220)
+                // .transform(12,12)
+                // .style("stroke", "black")
+            </script>
+
+            </div>
+
+            <script>
+                globalData2 = {{data3|safe}};
+                word_array = {{ word_data|safe }};
+
+            </script>
+            <script type="text/javascript" src="/static/js/scatter_plot.js"></script>
+
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script type="text/javascript" src="/static/js/jquery.nice-select.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
+
+            <script type="text/javascript" src="/static/js/cloud.js"></script>
+            <script type="text/javascript" src="/static/js/word_plot.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('select').niceSelect();
+                });
+            </script>>
+
+        </div>
+</body>
+
+</html>
