@@ -9,7 +9,7 @@
 [6. Supervised: Coef Analysis of Topics Generated](#section-c2) 
 [7. Future Plans](#section-e)  
 [8. Flask App](#section-end)  
-[9. Github Repo - Link](https://github.com/smeetvikani/AirBnB_User_Behavior_Classification)
+[9. Github Repo - Link](https://github.com/smeetvikani/Twitch_Comments_Analysis_NLP)
 
 
 ---
@@ -17,7 +17,7 @@
 ### <a name="section-a"></a>1.  Project Overview
 Twitch is a online streaming platform with 100+ Million active monthly users. People around the world sign on to watch their favorite player play their favorite game. 
 
-Designed an app that will enchance Twitch user experience for navigating saved replays. Specifically for game Fortnite, average length of a saved video is 5+ hours long. 
+Designed an app that will enhance Twitch user experience for navigating saved replays. Specifically for game Fortnite, average length of a saved video is 5+ hours long. 
 
 ##### The 3 goals for this project are:
 1.  Capture crowd reaction in terms of chat messages. 
@@ -75,9 +75,9 @@ Used to find optimal number of topics in the data sample.
 
 ### <a name="section-c3"></a> Coef Analysis: Used supervised GLM (Poisson) to find the best topics
 
-In order to find the best topics from the 32 clusters that we would like to model on the video time. Used supervised learning to assess which topics highly correlated with Increse in comment counts. 
+In order to find the best topics from the 32 clusters that we would like to model on the video time. Used supervised learning to assess which topics highly correlated with increase in comment counts. 
 
-* Depended Variable(y): Comments Per 30s
+* Dependent Variable(y): Comments Per 30s
 * Independent Variable(x): Topic Weights from NMF Model
 
 ![Sklearn logo](http://downloadforpc.net/Metis/fle/coefs.png)
